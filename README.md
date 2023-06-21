@@ -1,6 +1,6 @@
 ## Paywall calculator
 
-A [Nest](https://github.com/nestjs/nest) app that allows users to make paid arithmetic operations.
+A [NestJS](https://github.com/nestjs/nest) app that allows users to make paid arithmetic operations.
 
 ## Installation
 
