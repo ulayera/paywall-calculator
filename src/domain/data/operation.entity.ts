@@ -1,5 +1,5 @@
 import { Entity, Column, PrimaryGeneratedColumn } from 'typeorm';
-import { OperationType } from './operation-type';
+import { OperationType } from '../enum/operation-type';
 
 @Entity()
 export class Operation {

@@ -1,27 +1,28 @@
 import { Injectable } from '@nestjs/common';
-import { ResultDto } from './result-dto';
-import { MultiOperandOperations } from './multi-operand-operations';
-import { SingleOperandOperations } from './single-operand-operations';
-import { SingleOperandDto } from './single-operand-dto';
+import { ResultDto } from '../domain/dto/result-dto';
+import { MultiOperandOperations } from '../domain/enum/multi-operand-operations';
+import { SingleOperandOperations } from '../domain/enum/single-operand-operations';
+import { SingleOperandDto } from '../domain/dto/single-operand-dto';
+import { MultiOperandDto } from 'src/domain/dto/multi-operand-dto';
 
 @Injectable()
 export class ArithmeticOperationsService {
-  multiOperandOperation(operands: Array<number>, operation: MultiOperandOperations): ResultDto {
+  multiOperandOperation(operands: MultiOperandDto, operation: MultiOperandOperations): ResultDto {
     let reducer: any;
     switch( operation ) {
-      case MultiOperandOperations.ADD:
+      case MultiOperandOperations.ADDITION:
         reducer = this.sumReducer; break;
-      case MultiOperandOperations.SUBTRACT:
+      case MultiOperandOperations.SUBTRACTION:
         reducer = this.subtractReducer; break;
-      case MultiOperandOperations.MULTIPLY:
+      case MultiOperandOperations.MULTIPLICATION:
         reducer = this.multiplyReducer; break;
-      case MultiOperandOperations.DIVIDE:
+      case MultiOperandOperations.DIVISION:
         reducer = this.divideReducer; break;
       default:
         throw new Error('Unsupported operation');
     }
     return {
-      value: operands.reduce(reducer, 0)
+      value: operands.values.reduce(reducer, 0)
     };
   }
 

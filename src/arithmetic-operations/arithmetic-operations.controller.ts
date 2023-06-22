@@ -1,37 +1,38 @@
 import { Body, Controller, Post, UseGuards } from '@nestjs/common';
 import { AuthGuard } from 'src/auth/auth.guard';
-import { SingleOperandDto } from './single-operand-dto';
-import { ResultDto } from './result-dto';
+import { SingleOperandDto } from '../domain/dto/single-operand-dto';
+import { ResultDto } from '../domain/dto/result-dto';
 import { ArithmeticOperationsService } from './arithmetic-operations.service';
-import { MultiOperandOperations } from './multi-operand-operations';
-import { SingleOperandOperations } from './single-operand-operations';
+import { MultiOperandOperations } from '../domain/enum/multi-operand-operations';
+import { SingleOperandOperations } from '../domain/enum/single-operand-operations';
+import { MultiOperandDto } from 'src/domain/dto/multi-operand-dto';
 
 @Controller('arithmetic-operations')
 export class ArithmeticOperationsController {
   constructor(private readonly arithmeticOperationsService: ArithmeticOperationsService) {}
 
   @UseGuards(AuthGuard)
-  @Post('add')
-  async add(@Body() operands: Array<number>): Promise<ResultDto> {
-    return this.arithmeticOperationsService.multiOperandOperation(operands, MultiOperandOperations.ADD);
+  @Post('addition')
+  async addition(@Body() operands: MultiOperandDto): Promise<ResultDto> {
+    return this.arithmeticOperationsService.multiOperandOperation(operands, MultiOperandOperations.ADDITION);
   }
 
   @UseGuards(AuthGuard)
-  @Post('subtract')
-  async subtract(@Body() operands: Array<number>): Promise<ResultDto> {
-    return this.arithmeticOperationsService.multiOperandOperation(operands, MultiOperandOperations.SUBTRACT);
+  @Post('subtraction')
+  async subtraction(@Body() operands: MultiOperandDto): Promise<ResultDto> {
+    return this.arithmeticOperationsService.multiOperandOperation(operands, MultiOperandOperations.SUBTRACTION);
   }
 
   @UseGuards(AuthGuard)
-  @Post('multiply')
-  async multiply(@Body() operands: Array<number>): Promise<ResultDto> {
-    return this.arithmeticOperationsService.multiOperandOperation(operands, MultiOperandOperations.MULTIPLY);
+  @Post('multiplication')
+  async multiplication(@Body() operands: MultiOperandDto): Promise<ResultDto> {
+    return this.arithmeticOperationsService.multiOperandOperation(operands, MultiOperandOperations.MULTIPLICATION);
   }
 
   @UseGuards(AuthGuard)
-  @Post('divide')
-  async divide(@Body() operands: Array<number>): Promise<ResultDto> {
-    return this.arithmeticOperationsService.multiOperandOperation(operands, MultiOperandOperations.DIVIDE);
+  @Post('division')
+  async division(@Body() operands: MultiOperandDto): Promise<ResultDto> {
+    return this.arithmeticOperationsService.multiOperandOperation(operands, MultiOperandOperations.DIVISION);
   }
 
   @UseGuards(AuthGuard)

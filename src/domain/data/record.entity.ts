@@ -1,7 +1,7 @@
 import { Entity, Column, PrimaryGeneratedColumn, OneToOne } from 'typeorm';
-import { Operation } from './operation';
+import { Operation } from './operation.entity';
 import { type } from 'os';
-import { User } from './user';
+import { User } from './user.entity';
 
 @Entity()
 export class Record {
