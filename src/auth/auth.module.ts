@@ -11,8 +11,4 @@ import { User } from 'src/domain/data/user.entity';
   controllers: [AuthController],
   providers: [AuthService],
 })
-export class AuthModule {
-  constructor() {
-    console.log('Auth module JWT_SECRET', process.env.JWT_SECRET)
-  }
-}
+export class AuthModule {}

@@ -44,6 +44,6 @@ export class ArithmeticOperationsController {
   @UseGuards(AuthGuard)
   @Post('random-string')
   async randomString(@Body() operand: SingleOperandDto): Promise<ResultDto> {
-    return this.arithmeticOperationsService.singleOperandOperation(operand, SingleOperandOperations.RANDOM_STRING);
+    return await this.arithmeticOperationsService.singleOperandOperation(operand, SingleOperandOperations.RANDOM_STRING);
   }
 }

@@ -1,14 +1,13 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { AuthModule } from './auth/auth.module';
-import { UsersModule } from './users/users.module';
-import { TypeOrmModule } from '@nestjs/typeorm';
-import { User } from './domain/data/user.entity';
-import { Record } from './domain/data/record.entity';
-import { Operation } from './domain/data/operation.entity';
-import { ArithmeticOperationsController } from './arithmetic-operations/arithmetic-operations.controller';
 import { JwtModule } from '@nestjs/jwt';
-import { ArithmeticOperationsService } from './arithmetic-operations/arithmetic-operations.service';
+import { TypeOrmModule } from '@nestjs/typeorm';
+import { ArithmeticOperationsModule } from './arithmetic-operations/arithmetic-operations.module';
+import { AuthModule } from './auth/auth.module';
+import { Operation } from './domain/data/operation.entity';
+import { Record } from './domain/data/record.entity';
+import { User } from './domain/data/user.entity';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [
@@ -36,9 +35,10 @@ import { ArithmeticOperationsService } from './arithmetic-operations/arithmetic-
       inject: [ConfigService],
     }),
     AuthModule,
-    UsersModule
+    UsersModule,
+    ArithmeticOperationsModule
   ],
-  controllers: [ArithmeticOperationsController],
-  providers: [ArithmeticOperationsService],
+  controllers: [],
+  providers: [],
 })
 export class AppModule {}

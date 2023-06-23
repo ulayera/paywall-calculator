@@ -4,9 +4,13 @@ import { MultiOperandOperations } from '../domain/enum/multi-operand-operations'
 import { SingleOperandOperations } from '../domain/enum/single-operand-operations';
 import { SingleOperandDto } from '../domain/dto/single-operand-dto';
 import { MultiOperandDto } from 'src/domain/dto/multi-operand-dto';
+import { HttpService } from '@nestjs/axios';
+import axios from 'axios';
 
 @Injectable()
 export class ArithmeticOperationsService {
+  constructor(private readonly httpService: HttpService) {}
+
   multiOperandOperation(operands: MultiOperandDto, operation: MultiOperandOperations): ResultDto {
     let reducer: any;
     switch( operation ) {
@@ -31,7 +35,7 @@ export class ArithmeticOperationsService {
   private multiplyReducer = (array: Array<number>) => array.reduce((a, b) => a * b);
   private divideReducer = (array: Array<number>) => array.reduce((a, b) => a / b);
 
-  singleOperandOperation(operand: SingleOperandDto, operation: SingleOperandOperations): ResultDto {
+  async singleOperandOperation(operand: SingleOperandDto, operation: SingleOperandOperations): Promise<ResultDto> {
     let operatorFn: any;
     switch( operation ) {
       case SingleOperandOperations.SQUARE_ROOT:
@@ -42,9 +46,10 @@ export class ArithmeticOperationsService {
         throw new Error('Unsupported operation');
     }
     return {
-      value: operatorFn(operand.value)
+      value: await operatorFn(operand.value)
     };
   }
+  
   private squareRootFn = (a: number) => Math.sqrt(a);
-  private randomStringFn = (a: number) => Math.random().toString(36).substring(2, a + 2);
+  private randomStringFn = async (a: number) => await axios.get(`https://www.random.org/strings/?num=1&len=${a}&digits=on&upperalpha=on&loweralpha=on&unique=on&format=plain`).then(response => response.data?.replace(/\n$/, ""));
 }
