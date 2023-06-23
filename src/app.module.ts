@@ -8,6 +8,7 @@ import { Operation } from './domain/data/operation.entity';
 import { Record } from './domain/data/record.entity';
 import { User } from './domain/data/user.entity';
 import { UsersModule } from './users/users.module';
+import { PaywallModule } from './paywall/paywall.module';
 
 @Module({
   imports: [
@@ -36,7 +37,8 @@ import { UsersModule } from './users/users.module';
     }),
     AuthModule,
     UsersModule,
-    ArithmeticOperationsModule
+    ArithmeticOperationsModule,
+    PaywallModule
   ],
   controllers: [],
   providers: [],

@@ -1,4 +1,4 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne } from 'typeorm';
+import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
 import { Operation } from './operation.entity';
 import { type } from 'os';
 import { User } from './user.entity';
@@ -9,9 +9,11 @@ export class Record {
   id: number;
 
   @OneToOne(type => Operation, operation => operation.id)
+  @JoinColumn({ name: 'operation_id' })
   operation: Operation;
 
   @OneToOne(type => User, user => user.id)
+  @JoinColumn({ name: 'user_id' })
   user: User;
 
   @Column()
@@ -21,7 +23,7 @@ export class Record {
   userBalance: number;
 
   @Column()
-  operationresponse: string;
+  operationResponse: string;
 
   @Column()
   date: Date;

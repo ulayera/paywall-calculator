@@ -1,0 +1,29 @@
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import { Record } from 'src/domain/data/record.entity';
+import { User } from 'src/domain/data/user.entity';
+import { Repository } from 'typeorm';
+
+@Injectable()
+export class BalanceService {
+  constructor(
+    @InjectRepository(Record) private recordRepository: Repository<Record>) {}
+
+  async getBalance(user: User): Promise<number> {
+    let currentBalance = parseInt(process.env.INITIAL_BALANCE) || 20;
+    const lastOperationByUser = await this.recordRepository.findOne({
+      order: {
+        date: 'ASC',
+      },
+      where: {
+        user: {
+          id: user.id,
+        },
+      },
+    });
+    if (lastOperationByUser) {
+      currentBalance = lastOperationByUser.amount;
+    }
+    return Promise.resolve(currentBalance);
+  }
+}

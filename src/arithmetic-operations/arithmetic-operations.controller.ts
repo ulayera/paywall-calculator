@@ -1,4 +1,4 @@
-import { Body, Controller, Post, UseGuards } from '@nestjs/common';
+import { Body, Controller, Post, Request, UseGuards } from '@nestjs/common';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { MultiOperandDto } from 'src/domain/dto/multi-operand-dto';
 import { ResultDto } from '../domain/dto/result-dto';
@@ -18,55 +18,61 @@ export class ArithmeticOperationsController {
 
   @UseGuards(AuthGuard)
   @Post('addition')
-  async addition(@Body() operands: MultiOperandDto): Promise<ResultDto> {
+  async addition(@Body() operands: MultiOperandDto, @Request() req): Promise<ResultDto> {
     return this.arithmeticOperationsService.multiOperandOperation(
       operands,
       MultiOperandOperations.ADDITION,
+      req.user?.username,
     );
   }
 
   @UseGuards(AuthGuard)
   @Post('subtraction')
-  async subtraction(@Body() operands: MultiOperandDto): Promise<ResultDto> {
+  async subtraction(@Body() operands: MultiOperandDto, @Request() req): Promise<ResultDto> {
     return this.arithmeticOperationsService.multiOperandOperation(
       operands,
       MultiOperandOperations.SUBTRACTION,
+      req.user?.username,
     );
   }
 
   @UseGuards(AuthGuard)
   @Post('multiplication')
-  async multiplication(@Body() operands: MultiOperandDto): Promise<ResultDto> {
+  async multiplication(@Body() operands: MultiOperandDto, @Request() req): Promise<ResultDto> {
     return this.arithmeticOperationsService.multiOperandOperation(
       operands,
       MultiOperandOperations.MULTIPLICATION,
+      req.user?.username,
     );
   }
 
   @UseGuards(AuthGuard)
   @Post('division')
-  async division(@Body() operands: MultiOperandDto): Promise<ResultDto> {
+  async division(@Body() operands: MultiOperandDto, @Request() req): Promise<ResultDto> {
     return this.arithmeticOperationsService.multiOperandOperation(
       operands,
       MultiOperandOperations.DIVISION,
+      req.user?.username,
     );
   }
 
   @UseGuards(AuthGuard)
   @Post('square-root')
-  async squareRoot(@Body() operand: SingleOperandDto): Promise<ResultDto> {
+  async squareRoot(@Body() operand: SingleOperandDto, @Request() req): Promise<ResultDto> {
     return this.arithmeticOperationsService.singleOperandOperation(
       operand,
       SingleOperandOperations.SQUARE_ROOT,
+      req.user?.username,
     );
   }
 
   @UseGuards(AuthGuard)
   @Post('random-string')
-  async randomString(@Body() operand: SingleOperandDto): Promise<ResultDto> {
+  async randomString(@Body() operand: SingleOperandDto, @Request() req): Promise<ResultDto> {
     return await this.arithmeticOperationsService.singleOperandOperation(
       operand,
       SingleOperandOperations.RANDOM_STRING,
+      req.user?.username,
     );
   }
 }
