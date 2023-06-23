@@ -7,43 +7,66 @@ import { MultiOperandOperations } from '../domain/enum/multi-operand-operations'
 import { SingleOperandOperations } from '../domain/enum/single-operand-operations';
 import { ArithmeticOperationsService } from './arithmetic-operations.service';
 
-@Controller('arithmetic-operations')
+@Controller({
+  path: 'arithmetic-operations',
+  version: '1',
+})
 export class ArithmeticOperationsController {
-  constructor(private readonly arithmeticOperationsService: ArithmeticOperationsService) {}
+  constructor(
+    private readonly arithmeticOperationsService: ArithmeticOperationsService,
+  ) {}
 
   @UseGuards(AuthGuard)
   @Post('addition')
   async addition(@Body() operands: MultiOperandDto): Promise<ResultDto> {
-    return this.arithmeticOperationsService.multiOperandOperation(operands, MultiOperandOperations.ADDITION);
+    return this.arithmeticOperationsService.multiOperandOperation(
+      operands,
+      MultiOperandOperations.ADDITION,
+    );
   }
 
   @UseGuards(AuthGuard)
   @Post('subtraction')
   async subtraction(@Body() operands: MultiOperandDto): Promise<ResultDto> {
-    return this.arithmeticOperationsService.multiOperandOperation(operands, MultiOperandOperations.SUBTRACTION);
+    return this.arithmeticOperationsService.multiOperandOperation(
+      operands,
+      MultiOperandOperations.SUBTRACTION,
+    );
   }
 
   @UseGuards(AuthGuard)
   @Post('multiplication')
   async multiplication(@Body() operands: MultiOperandDto): Promise<ResultDto> {
-    return this.arithmeticOperationsService.multiOperandOperation(operands, MultiOperandOperations.MULTIPLICATION);
+    return this.arithmeticOperationsService.multiOperandOperation(
+      operands,
+      MultiOperandOperations.MULTIPLICATION,
+    );
   }
 
   @UseGuards(AuthGuard)
   @Post('division')
   async division(@Body() operands: MultiOperandDto): Promise<ResultDto> {
-    return this.arithmeticOperationsService.multiOperandOperation(operands, MultiOperandOperations.DIVISION);
+    return this.arithmeticOperationsService.multiOperandOperation(
+      operands,
+      MultiOperandOperations.DIVISION,
+    );
   }
 
   @UseGuards(AuthGuard)
   @Post('square-root')
   async squareRoot(@Body() operand: SingleOperandDto): Promise<ResultDto> {
-    return this.arithmeticOperationsService.singleOperandOperation(operand, SingleOperandOperations.SQUARE_ROOT);
+    return this.arithmeticOperationsService.singleOperandOperation(
+      operand,
+      SingleOperandOperations.SQUARE_ROOT,
+    );
   }
 
   @UseGuards(AuthGuard)
   @Post('random-string')
   async randomString(@Body() operand: SingleOperandDto): Promise<ResultDto> {
-    return await this.arithmeticOperationsService.singleOperandOperation(operand, SingleOperandOperations.RANDOM_STRING);
+    return await this.arithmeticOperationsService.singleOperandOperation(
+      operand,
+      SingleOperandOperations.RANDOM_STRING,
+    );
   }
 }
