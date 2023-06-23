@@ -22,14 +22,14 @@ export class ArithmeticOperationsService {
         throw new Error('Unsupported operation');
     }
     return {
-      value: operands.values.reduce(reducer, 0)
+      value: reducer(operands.values)
     };
   }
 
-  private sumReducer = (a: number, b: number) => a + b;
-  private subtractReducer = (a: number, b: number) => a - b;
-  private multiplyReducer = (a: number, b: number) => a * b;
-  private divideReducer = (a: number, b: number) => a / b;
+  private sumReducer = (array: Array<number>) => array.reduce((a, b) => a + b);
+  private subtractReducer = (array: Array<number>) => array.reduce((a, b) => a - b);
+  private multiplyReducer = (array: Array<number>) => array.reduce((a, b) => a * b);
+  private divideReducer = (array: Array<number>) => array.reduce((a, b) => a / b);
 
   singleOperandOperation(operand: SingleOperandDto, operation: SingleOperandOperations): ResultDto {
     let operatorFn: any;
@@ -42,7 +42,7 @@ export class ArithmeticOperationsService {
         throw new Error('Unsupported operation');
     }
     return {
-      value: operatorFn(operand)
+      value: operatorFn(operand.value)
     };
   }
   private squareRootFn = (a: number) => Math.sqrt(a);

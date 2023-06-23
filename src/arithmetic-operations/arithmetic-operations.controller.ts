@@ -1,11 +1,11 @@
 import { Body, Controller, Post, UseGuards } from '@nestjs/common';
 import { AuthGuard } from 'src/auth/auth.guard';
-import { SingleOperandDto } from '../domain/dto/single-operand-dto';
+import { MultiOperandDto } from 'src/domain/dto/multi-operand-dto';
 import { ResultDto } from '../domain/dto/result-dto';
-import { ArithmeticOperationsService } from './arithmetic-operations.service';
+import { SingleOperandDto } from '../domain/dto/single-operand-dto';
 import { MultiOperandOperations } from '../domain/enum/multi-operand-operations';
 import { SingleOperandOperations } from '../domain/enum/single-operand-operations';
-import { MultiOperandDto } from 'src/domain/dto/multi-operand-dto';
+import { ArithmeticOperationsService } from './arithmetic-operations.service';
 
 @Controller('arithmetic-operations')
 export class ArithmeticOperationsController {
