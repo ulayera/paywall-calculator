@@ -13,7 +13,7 @@ export class BalanceService {
     let currentBalance = parseInt(process.env.INITIAL_BALANCE) || 20;
     const lastOperationByUser = await this.recordRepository.findOne({
       order: {
-        date: 'ASC',
+        date: 'DESC',
       },
       where: {
         user: {
@@ -22,7 +22,7 @@ export class BalanceService {
       },
     });
     if (lastOperationByUser) {
-      currentBalance = lastOperationByUser.amount;
+      currentBalance = lastOperationByUser.userBalance;
     }
     return Promise.resolve(currentBalance);
   }

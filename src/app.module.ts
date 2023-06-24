@@ -7,8 +7,8 @@ import { AuthModule } from './auth/auth.module';
 import { Operation } from './domain/data/operation.entity';
 import { Record } from './domain/data/record.entity';
 import { User } from './domain/data/user.entity';
-import { UsersModule } from './users/users.module';
 import { PaywallModule } from './paywall/paywall.module';
+import { UsersModule } from './users/users.module';
 
 @Module({
   imports: [

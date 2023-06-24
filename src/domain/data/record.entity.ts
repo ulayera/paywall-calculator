@@ -1,18 +1,17 @@
-import { Entity, Column, PrimaryGeneratedColumn, OneToOne, JoinColumn } from 'typeorm';
+import { Column, Entity, JoinColumn, ManyToOne, OneToOne, PrimaryGeneratedColumn } from 'typeorm';
 import { Operation } from './operation.entity';
-import { type } from 'os';
 import { User } from './user.entity';
 
 @Entity()
 export class Record {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn('increment')
   id: number;
 
-  @OneToOne(type => Operation, operation => operation.id)
+  @ManyToOne(type => Operation, operation => operation.id)
   @JoinColumn({ name: 'operation_id' })
   operation: Operation;
 
-  @OneToOne(type => User, user => user.id)
+  @ManyToOne(type => User, user => user.id)
   @JoinColumn({ name: 'user_id' })
   user: User;
 
