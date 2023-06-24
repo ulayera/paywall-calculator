@@ -12,6 +12,7 @@ import { ResultDto } from '../domain/dto/result-dto';
 import { SingleOperandDto } from '../domain/dto/single-operand-dto';
 import { MultiOperandOperations } from '../domain/enum/multi-operand-operations';
 import { SingleOperandOperations } from '../domain/enum/single-operand-operations';
+import { firstValueFrom } from 'rxjs';
 
 @Injectable()
 export class ArithmeticOperationsService {
@@ -48,7 +49,9 @@ export class ArithmeticOperationsService {
     }
 
     const currentBalance: number = await this.balanceService.getBalance(user);
-    const operation: Operation = await this.operationService.getByType(operationType as unknown as OperationType);
+    const operation: Operation = await this.operationService.getByType(
+      operationType as unknown as OperationType,
+    );
     if (currentBalance < operation.cost) {
       throw new NotAcceptableException('Insufficient balance');
     }
@@ -73,6 +76,7 @@ export class ArithmeticOperationsService {
     operationType: SingleOperandOperations,
     username: string,
   ): Promise<ResultDto> {
+    const user: User = await this.usersService.getByUsername(username);
     let operatorFn: any;
     switch (operationType) {
       case SingleOperandOperations.SQUARE_ROOT:
@@ -84,17 +88,28 @@ export class ArithmeticOperationsService {
       default:
         throw new Error('Unsupported operation');
     }
-    return {
+
+    const currentBalance: number = await this.balanceService.getBalance(user);
+    const operation: Operation = await this.operationService.getByType(
+      operationType as unknown as OperationType,
+    );
+    if (currentBalance < operation.cost) {
+      throw new NotAcceptableException('Insufficient balance');
+    }
+
+    const result = {
       value: await operatorFn(operand.value),
     };
+
+    this.recordService.log(user, operation, result.value, currentBalance);
+    return result;
   }
 
   private squareRootFn = (a: number) => Math.sqrt(a);
   private randomStringFn = async (a: number) =>
-    await this.httpService
-      .get(
+    await firstValueFrom(
+      this.httpService.get(
         `https://www.random.org/strings/?num=1&len=${a}&digits=on&upperalpha=on&loweralpha=on&unique=on&format=plain`,
-      )
-      .toPromise()
-      .then((response) => response.data?.replace(/\n$/, ''));
+      ),
+    ).then((response) => response.data?.replace(/\n$/, ''));
 }
