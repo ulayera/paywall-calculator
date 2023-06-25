@@ -18,6 +18,8 @@ $ docker run -d --name paywall-calculator-db -p 3306:3306 -e MYSQL_ROOT_PASSWORD
 ## Database init
 
 ```bash
+$ npm run start
+// Ctrl+C to kill the process, this execution is just so the schema is generated
 $ npm run typeorm -- migration:run -d config/migration.config.ts
 ```
 
@@ -36,12 +38,11 @@ $ npm run start:prod
 
 ## Test
 
+Didn't have enough time to invest on this so I just tested one file as a showcase of how to test under the nestjs DI
+
 ```bash
 # unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
+$ npm test -- src/auth/auth.guard.spec.ts
 
 # test coverage
 $ npm run test:cov
