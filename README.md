@@ -6,6 +6,8 @@ A [NestJS](https://github.com/nestjs/nest) app that allows users to make paid ar
 
 ```bash
 $ npm install
+$ cp example.env .env
+# check the values in .env
 ```
 
 ## Database setup

@@ -6,9 +6,10 @@ import { PaywallModule } from 'src/paywall/paywall.module';
 import { ArithmeticOperationsController } from './arithmetic-operations.controller';
 import { ArithmeticOperationsService } from './arithmetic-operations.service';
 import { UsersModule } from 'src/users/users.module';
+import { RecordsModule } from 'src/records/records.module';
 
 @Module({
-  imports: [HttpModule, PaywallModule, UsersModule, TypeOrmModule.forFeature([User])],
+  imports: [HttpModule, PaywallModule, UsersModule, RecordsModule, TypeOrmModule.forFeature([User])],
   controllers: [ArithmeticOperationsController],
   providers: [ArithmeticOperationsService],
 })

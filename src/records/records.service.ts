@@ -3,16 +3,15 @@ import { InjectRepository } from '@nestjs/typeorm';
 import { Operation } from 'src/domain/data/operation.entity';
 import { Record } from 'src/domain/data/record.entity';
 import { User } from 'src/domain/data/user.entity';
-import { OperationType } from 'src/domain/enum/operation-type';
 import { Repository } from 'typeorm';
-import { OperationService } from './operation.service';
 
 @Injectable()
-export class RecordService {
+export class RecordsService {
   constructor(
     @InjectRepository(Record)
     private readonly recordRepository: Repository<Record>,
-    private readonly operationService: OperationService,
+    @InjectRepository(User)
+    private readonly userRepository: Repository<User>,
   ) {}
 
   async log(
@@ -35,5 +34,10 @@ export class RecordService {
     record = await this.recordRepository.save(record);
 
     return Promise.resolve();
+  }
+
+  async getRecordsByUsername(username: string): Promise<Array<Record>> {
+    const user = await this.userRepository.findOneBy({ username });
+    return this.recordRepository.findBy({ user });
   }
 }

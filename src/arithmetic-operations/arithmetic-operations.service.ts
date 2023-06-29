@@ -1,24 +1,24 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable, NotAcceptableException } from '@nestjs/common';
+import { firstValueFrom } from 'rxjs';
 import { Operation } from 'src/domain/data/operation.entity';
 import { User } from 'src/domain/data/user.entity';
 import { MultiOperandDto } from 'src/domain/dto/multi-operand-dto';
 import { OperationType } from 'src/domain/enum/operation-type';
 import { BalanceService } from 'src/paywall/balance.service';
 import { OperationService } from 'src/paywall/operation.service';
-import { RecordService } from 'src/paywall/record.service';
+import { RecordsService } from 'src/records/records.service';
 import { UsersService } from 'src/users/users.service';
 import { ResultDto } from '../domain/dto/result-dto';
 import { SingleOperandDto } from '../domain/dto/single-operand-dto';
 import { MultiOperandOperations } from '../domain/enum/multi-operand-operations';
 import { SingleOperandOperations } from '../domain/enum/single-operand-operations';
-import { firstValueFrom } from 'rxjs';
 
 @Injectable()
 export class ArithmeticOperationsService {
   constructor(
     private readonly httpService: HttpService,
-    private readonly recordService: RecordService,
+    private readonly recordService: RecordsService,
     private readonly balanceService: BalanceService,
     private readonly operationService: OperationService,
     private readonly usersService: UsersService,
