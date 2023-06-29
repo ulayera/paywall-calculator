@@ -7,11 +7,11 @@ export class Record {
   @PrimaryGeneratedColumn('increment')
   id: number;
 
-  @ManyToOne(type => Operation, operation => operation.id)
+  @ManyToOne(() => Operation, operation => operation.id)
   @JoinColumn({ name: 'operation_id' })
   operation: Operation;
 
-  @ManyToOne(type => User, user => user.id)
+  @ManyToOne(() => User, user => user.id)
   @JoinColumn({ name: 'user_id' })
   user: User;
 

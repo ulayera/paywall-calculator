@@ -38,6 +38,6 @@ export class RecordsService {
 
   async getRecordsByUsername(username: string): Promise<Array<Record>> {
     const user = await this.userRepository.findOneBy({ username });
-    return this.recordRepository.findBy({ user });
+    return this.recordRepository.find({ relations: ['operation', 'user'], where: { user } });
   }
 }
