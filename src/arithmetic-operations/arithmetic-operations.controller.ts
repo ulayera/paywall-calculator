@@ -19,7 +19,7 @@ export class ArithmeticOperationsController {
   @UseGuards(AuthGuard)
   @Post('addition')
   async addition(@Body() operands: MultiOperandDto, @Request() req): Promise<ResultDto> {
-    return this.arithmeticOperationsService.multiOperandOperation(
+    return await this.arithmeticOperationsService.multiOperandOperation(
       operands,
       MultiOperandOperations.ADDITION,
       req.user?.username,
@@ -29,7 +29,7 @@ export class ArithmeticOperationsController {
   @UseGuards(AuthGuard)
   @Post('subtraction')
   async subtraction(@Body() operands: MultiOperandDto, @Request() req): Promise<ResultDto> {
-    return this.arithmeticOperationsService.multiOperandOperation(
+    return await this.arithmeticOperationsService.multiOperandOperation(
       operands,
       MultiOperandOperations.SUBTRACTION,
       req.user?.username,
@@ -39,7 +39,7 @@ export class ArithmeticOperationsController {
   @UseGuards(AuthGuard)
   @Post('multiplication')
   async multiplication(@Body() operands: MultiOperandDto, @Request() req): Promise<ResultDto> {
-    return this.arithmeticOperationsService.multiOperandOperation(
+    return await this.arithmeticOperationsService.multiOperandOperation(
       operands,
       MultiOperandOperations.MULTIPLICATION,
       req.user?.username,
@@ -49,7 +49,7 @@ export class ArithmeticOperationsController {
   @UseGuards(AuthGuard)
   @Post('division')
   async division(@Body() operands: MultiOperandDto, @Request() req): Promise<ResultDto> {
-    return this.arithmeticOperationsService.multiOperandOperation(
+    return await this.arithmeticOperationsService.multiOperandOperation(
       operands,
       MultiOperandOperations.DIVISION,
       req.user?.username,
@@ -59,7 +59,7 @@ export class ArithmeticOperationsController {
   @UseGuards(AuthGuard)
   @Post('square-root')
   async squareRoot(@Body() operand: SingleOperandDto, @Request() req): Promise<ResultDto> {
-    return this.arithmeticOperationsService.singleOperandOperation(
+    return await this.arithmeticOperationsService.singleOperandOperation(
       operand,
       SingleOperandOperations.SQUARE_ROOT,
       req.user?.username,

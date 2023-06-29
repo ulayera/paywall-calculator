@@ -59,7 +59,7 @@ export class ArithmeticOperationsService {
       value: reducer(operands.values),
       balanceLeft: currentBalance - operation.cost,
     };
-    this.recordService.log(user, operation, result.value, currentBalance);
+    await this.recordService.log(user, operation, result.value, currentBalance);
     return result;
   }
 
