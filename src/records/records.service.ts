@@ -1,8 +1,8 @@
 import { Injectable, UnauthorizedException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Operation } from 'src/domain/data/operation.entity';
-import { Record } from 'src/domain/data/record.entity';
-import { User } from 'src/domain/data/user.entity';
+import { Operation } from '../domain/data/operation.entity';
+import { Record } from '../domain/data/record.entity';
+import { User } from '../domain/data/user.entity';
 import { Repository } from 'typeorm';
 
 @Injectable()

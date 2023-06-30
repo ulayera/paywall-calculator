@@ -1,8 +1,8 @@
 import { BadRequestException, ConflictException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
-import { User } from 'src/domain/data/user.entity';
-import { UserStatus } from 'src/domain/enum/user-status';
+import { User } from '../domain/data/user.entity';
+import { UserStatus } from '../domain/enum/user-status';
 import { Repository } from 'typeorm';
 import { TokenDto } from './token-dto';
 

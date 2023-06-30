@@ -17,7 +17,7 @@ export default registerAs('database', () => {
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
     // synchronize: process.env.MODE === "dev",
-    entities: ['src/domain/**/*.entity.{ts,js}'],
+    entities: ['../domain/**/*.entity.{ts,js}'],
     migrations: ['config/migrations/*.ts'],
   };
 });

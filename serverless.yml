@@ -1,0 +1,36 @@
+service: paywall-calculator-lambda
+
+frameworkVersion: "1"
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-plugin-optimize
+  - serverless-offline
+  # - serverless-plugin-warmup
+
+# custom:
+#   # Enable warmup on all functions (only for production and staging)
+#   warmup:      
+#       - production
+#       - staging
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+
+package:
+  individually: true
+
+functions:
+  lambda:
+    handler: src/lambda.handler
+    events:
+      - http:
+          method: any
+          path: /{proxy+}
+
+custom:
+  serverless-offline:
+    httpPort: 4000
+    httpApi:
+      - path:

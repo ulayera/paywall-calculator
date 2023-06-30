@@ -1,5 +1,5 @@
-import { Operation } from 'src/domain/data/operation.entity';
-import { OperationType } from 'src/domain/enum/operation-type';
+import { Operation } from '../../src/domain/data/operation.entity';
+import { OperationType } from '../../src/domain/enum/operation-type';
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
 export class LoadOperations1687464601412 implements MigrationInterface {

@@ -1,6 +1,6 @@
 import { Body, Controller, Post, Request, UseGuards } from '@nestjs/common';
-import { AuthGuard } from 'src/auth/auth.guard';
-import { MultiOperandDto } from 'src/domain/dto/multi-operand-dto';
+import { AuthGuard } from '../auth/auth.guard';
+import { MultiOperandDto } from '../domain/dto/multi-operand-dto';
 import { ResultDto } from '../domain/dto/result-dto';
 import { SingleOperandDto } from '../domain/dto/single-operand-dto';
 import { MultiOperandOperations } from '../domain/enum/multi-operand-operations';

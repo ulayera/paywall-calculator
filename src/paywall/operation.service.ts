@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { Operation } from 'src/domain/data/operation.entity';
-import { OperationType } from 'src/domain/enum/operation-type';
+import { Operation } from '../domain/data/operation.entity';
+import { OperationType } from '../domain/enum/operation-type';
 import { Repository } from 'typeorm';
 
 @Injectable()

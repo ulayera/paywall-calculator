@@ -1,6 +1,6 @@
 import { Controller, Get, Request, UseGuards } from '@nestjs/common';
-import { AuthGuard } from 'src/auth/auth.guard';
-import { Record } from 'src/domain/data/record.entity';
+import { AuthGuard } from '../auth/auth.guard';
+import { Record } from '../domain/data/record.entity';
 import { RecordsService } from './records.service';
 
 @Controller({
