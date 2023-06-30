@@ -1,6 +1,6 @@
 service: paywall-calculator-lambda
 
-frameworkVersion: "1"
+frameworkVersion: "3"
 
 plugins:
   - serverless-plugin-typescript
