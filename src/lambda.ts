@@ -22,14 +22,11 @@ process.on('uncaughtException', (reason) => {
 });
 
 async function bootstrapServer(): Promise<Server> {
-  console.log('Bootstraping server...', cachedServer);
   if (!cachedServer) {
     try {
       const expressApp = require('express')();
       const adapter = new ExpressAdapter(expressApp);
-      console.log('Creating Express app...');
       const app = await NestFactory.create(AppModule, adapter);
-      console.log('Created Express app...');
       app.enableVersioning({
         type: VersioningType.URI,
       });
@@ -46,6 +43,5 @@ async function bootstrapServer(): Promise<Server> {
 
 export const handler: Handler = async (event: any, context: Context) => {
   cachedServer = await bootstrapServer();
-  console.log('Calling handler...', !!cachedServer);
   return proxy(cachedServer, event, context, 'PROMISE').promise;
 }
