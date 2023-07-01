@@ -34,7 +34,9 @@
     "axios": "^1.4.0",
     "mysql2": "^3.3.3",
     "reflect-metadata": "^0.1.13",
-    "rxjs": "^7.2.0"
+    "rxjs": "^7.2.0",
+    "typeorm": "0.3.7",
+    "source-map-support": "^0.5.20"
   },
   "devDependencies": {
     "@nestjs/cli": "^9.0.0",

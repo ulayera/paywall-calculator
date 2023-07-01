@@ -1,4 +1,4 @@
-service: paywall-calculator-lambda
+service: paywall-calculator
 
 frameworkVersion: "3"
 

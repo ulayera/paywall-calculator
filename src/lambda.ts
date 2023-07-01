@@ -31,6 +31,7 @@ async function bootstrapServer(): Promise<Server> {
         type: VersioningType.URI,
       });
       app.use(eventContext());
+      app.enableCors();
       await app.init();
       cachedServer = createServer(expressApp, undefined, binaryMimeTypes);
     }
