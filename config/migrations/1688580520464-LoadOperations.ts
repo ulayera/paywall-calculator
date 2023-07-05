@@ -3,7 +3,7 @@ import { Operation } from '../../src/domain/data/operation.entity';
 import { OperationType } from '../../src/domain/enum/operation-type';
 import { MigrationInterface, QueryRunner } from 'typeorm';
 
-export class LoadOperations1687464601412 implements MigrationInterface {
+export class LoadOperations1688580520464 implements MigrationInterface {
   public async up(queryRunner: QueryRunner): Promise<void> {
     queryRunner.connection
       .createQueryBuilder()

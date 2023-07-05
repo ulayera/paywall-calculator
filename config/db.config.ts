@@ -1,5 +1,8 @@
 import { registerAs } from '@nestjs/config';
 import { loadOrGetEnv } from './env.config';
+import { User } from 'src/domain/data/user.entity';
+import { Record } from 'src/domain/data/record.entity';
+import { Operation } from 'src/domain/data/operation.entity';
 
 loadOrGetEnv();
 
@@ -14,7 +17,7 @@ export default registerAs('database', () => {
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
     // synchronize: process.env.MODE === "dev",
-    entities: ['src/domain/**/*.entity.{ts,js}'],
+    entities: [User, Record, Operation],
     migrations: ['config/migrations/*.ts'],
   };
 });

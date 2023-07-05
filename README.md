@@ -20,9 +20,10 @@ $ docker run -d --name paywall-calculator-db -p 3306:3306 -e MYSQL_ROOT_PASSWORD
 ## Database init
 
 ```bash
-$ npm run start
-// Ctrl+C to kill the process, this execution is just so the schema is generated
-$ npm run typeorm -- migration:run -d config/migration.config.ts
+// initialize schema
+$ npm run orm:sync
+// initialize data
+$ npm run orm:migration
 ```
 
 ## Running the app

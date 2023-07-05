@@ -6,6 +6,7 @@ plugins:
   - serverless-plugin-typescript
   - serverless-plugin-optimize
   - serverless-offline
+  - serverless-dotenv-plugin
   # - serverless-plugin-warmup
 
 # custom:
@@ -17,6 +18,14 @@ plugins:
 provider:
   name: aws
   runtime: nodejs18.x
+  timeout: 35
+  vpc:
+    securityGroupIds:
+      - 'sg-a329daeb'
+    subnetIds:
+      - 'subnet-01d9614b'
+      - 'subnet-57a35579'
+      - 'subnet-47ea1020'
 
 package:
   individually: true

@@ -19,9 +19,12 @@
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
     "orm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
-    "orm:migration:run": "npm run orm -- migration:run -d config/migration.config.ts",
+    "orm:sync": "npm run orm -- schema:sync -d config/migration.config.ts",
+    "orm:sync:prod": "export NODE_ENV=production; npm run orm:sync",
+    "orm:migration": "npm run orm -- migration:run -d config/migration.config.ts",
+    "orm:migration:prod": "export NODE_ENV=production; npm run orm:migration",
     "lambda:offline": "sls offline start",
-    "lambda:deploy": "sls deploy -s api"
+    "lambda:deploy": "export NODE_ENV=production; sls deploy -s api"
   },
   "dependencies": {
     "@nestjs/axios": "^3.0.0",
@@ -58,6 +61,7 @@
     "plugin": "^0.3.3",
     "prettier": "^2.3.2",
     "serverless": "^3.33.0",
+    "serverless-dotenv-plugin": "^6.0.0",
     "serverless-offline": "^12.0.4",
     "serverless-plugin-optimize": "^4.0.2-rc.1",
     "serverless-plugin-typescript": "^2.1.5",
