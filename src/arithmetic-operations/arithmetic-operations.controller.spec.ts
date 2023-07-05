@@ -9,7 +9,9 @@ describe('ArithmeticOperationsController', () => {
       controllers: [ArithmeticOperationsController],
     }).compile();
 
-    controller = module.get<ArithmeticOperationsController>(ArithmeticOperationsController);
+    controller = module.get<ArithmeticOperationsController>(
+      ArithmeticOperationsController,
+    );
   });
 
   it('should be defined', () => {

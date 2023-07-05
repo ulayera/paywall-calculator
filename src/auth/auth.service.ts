@@ -1,4 +1,10 @@
-import { BadRequestException, ConflictException, Injectable, NotFoundException, UnauthorizedException } from '@nestjs/common';
+import {
+  BadRequestException,
+  ConflictException,
+  Injectable,
+  NotFoundException,
+  UnauthorizedException,
+} from '@nestjs/common';
 import { JwtService } from '@nestjs/jwt';
 import { InjectRepository } from '@nestjs/typeorm';
 import { User } from '../domain/data/user.entity';
@@ -10,7 +16,7 @@ import { TokenDto } from './token-dto';
 export class AuthService {
   constructor(
     @InjectRepository(User) private usersRepository: Repository<User>,
-    private jwtService: JwtService
+    private jwtService: JwtService,
   ) {}
 
   async login(username: string, pass: string): Promise<TokenDto> {
@@ -31,7 +37,7 @@ export class AuthService {
     if (!username || !password) {
       throw new Error('Username and password are required');
     }
-    let existingUser = await this.usersRepository.findOneBy({ username });
+    const existingUser = await this.usersRepository.findOneBy({ username });
     if (existingUser) {
       throw new ConflictException('Username already exists');
     }

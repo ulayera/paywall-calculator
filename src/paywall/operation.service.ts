@@ -13,5 +13,5 @@ export class OperationService {
 
   getByType(type: OperationType): Promise<Operation> {
     return this.operationRepository.findOneBy({ type });
-  } 
+  }
 }

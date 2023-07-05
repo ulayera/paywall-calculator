@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-var-requires */
 import { Handler, Context } from 'aws-lambda';
 import { Server } from 'http';
 import { createServer, proxy } from 'aws-serverless-express';
@@ -34,8 +35,7 @@ async function bootstrapServer(): Promise<Server> {
       app.enableCors();
       await app.init();
       cachedServer = createServer(expressApp, undefined, binaryMimeTypes);
-    }
-    catch (error) {
+    } catch (error) {
       return Promise.reject(error);
     }
   }
@@ -45,4 +45,4 @@ async function bootstrapServer(): Promise<Server> {
 export const handler: Handler = async (event: any, context: Context) => {
   cachedServer = await bootstrapServer();
   return proxy(cachedServer, event, context, 'PROMISE').promise;
-}
+};

@@ -9,7 +9,9 @@ describe('ArithmeticOperationsService', () => {
       providers: [ArithmeticOperationsService],
     }).compile();
 
-    service = module.get<ArithmeticOperationsService>(ArithmeticOperationsService);
+    service = module.get<ArithmeticOperationsService>(
+      ArithmeticOperationsService,
+    );
   });
 
   it('should be defined', () => {

@@ -9,11 +9,8 @@ import { RecordsModule } from '../records/records.module';
 import { RecordsService } from '../records/records.service';
 
 @Module({
-  imports: [
-    TypeOrmModule.forFeature([Record, User, Operation]),
-    RecordsModule
-  ],
-  providers: [RecordsService,BalanceService, OperationService],
+  imports: [TypeOrmModule.forFeature([Record, User, Operation]), RecordsModule],
+  providers: [RecordsService, BalanceService, OperationService],
   exports: [BalanceService, OperationService],
 })
 export class PaywallModule {}

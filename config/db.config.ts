@@ -1,10 +1,7 @@
-import { ConfigModule, registerAs } from '@nestjs/config';
-import { MysqlConnectionOptions } from 'typeorm/driver/mysql/MysqlConnectionOptions';
+import { registerAs } from '@nestjs/config';
+import { loadOrGetEnv } from './env.config';
 
-ConfigModule.forRoot({
-  isGlobal: true,
-  envFilePath: '.env',
-});
+loadOrGetEnv();
 
 export default registerAs('database', () => {
   return {
@@ -17,7 +14,7 @@ export default registerAs('database', () => {
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
     // synchronize: process.env.MODE === "dev",
-    entities: ['../domain/**/*.entity.{ts,js}'],
+    entities: ['src/domain/**/*.entity.{ts,js}'],
     migrations: ['config/migrations/*.ts'],
   };
 });

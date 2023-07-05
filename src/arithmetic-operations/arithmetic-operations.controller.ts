@@ -18,7 +18,10 @@ export class ArithmeticOperationsController {
 
   @UseGuards(AuthGuard)
   @Post('addition')
-  async addition(@Body() operands: MultiOperandDto, @Request() req): Promise<ResultDto> {
+  async addition(
+    @Body() operands: MultiOperandDto,
+    @Request() req,
+  ): Promise<ResultDto> {
     return await this.arithmeticOperationsService.multiOperandOperation(
       operands,
       MultiOperandOperations.ADDITION,
@@ -28,7 +31,10 @@ export class ArithmeticOperationsController {
 
   @UseGuards(AuthGuard)
   @Post('subtraction')
-  async subtraction(@Body() operands: MultiOperandDto, @Request() req): Promise<ResultDto> {
+  async subtraction(
+    @Body() operands: MultiOperandDto,
+    @Request() req,
+  ): Promise<ResultDto> {
     return await this.arithmeticOperationsService.multiOperandOperation(
       operands,
       MultiOperandOperations.SUBTRACTION,
@@ -38,7 +44,10 @@ export class ArithmeticOperationsController {
 
   @UseGuards(AuthGuard)
   @Post('multiplication')
-  async multiplication(@Body() operands: MultiOperandDto, @Request() req): Promise<ResultDto> {
+  async multiplication(
+    @Body() operands: MultiOperandDto,
+    @Request() req,
+  ): Promise<ResultDto> {
     return await this.arithmeticOperationsService.multiOperandOperation(
       operands,
       MultiOperandOperations.MULTIPLICATION,
@@ -48,7 +57,10 @@ export class ArithmeticOperationsController {
 
   @UseGuards(AuthGuard)
   @Post('division')
-  async division(@Body() operands: MultiOperandDto, @Request() req): Promise<ResultDto> {
+  async division(
+    @Body() operands: MultiOperandDto,
+    @Request() req,
+  ): Promise<ResultDto> {
     return await this.arithmeticOperationsService.multiOperandOperation(
       operands,
       MultiOperandOperations.DIVISION,
@@ -58,7 +70,10 @@ export class ArithmeticOperationsController {
 
   @UseGuards(AuthGuard)
   @Post('square-root')
-  async squareRoot(@Body() operand: SingleOperandDto, @Request() req): Promise<ResultDto> {
+  async squareRoot(
+    @Body() operand: SingleOperandDto,
+    @Request() req,
+  ): Promise<ResultDto> {
     return await this.arithmeticOperationsService.singleOperandOperation(
       operand,
       SingleOperandOperations.SQUARE_ROOT,
@@ -68,7 +83,10 @@ export class ArithmeticOperationsController {
 
   @UseGuards(AuthGuard)
   @Post('random-string')
-  async randomString(@Body() operand: SingleOperandDto, @Request() req): Promise<ResultDto> {
+  async randomString(
+    @Body() operand: SingleOperandDto,
+    @Request() req,
+  ): Promise<ResultDto> {
     return await this.arithmeticOperationsService.singleOperandOperation(
       operand,
       SingleOperandOperations.RANDOM_STRING,

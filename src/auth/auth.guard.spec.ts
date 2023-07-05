@@ -61,7 +61,9 @@ describe('AuthGuard.canActivate', () => {
 
 describe('AuthGuard.extractTokenFromHeader', () => {
   it('should be defined', () => {
-    expect(new AuthGuard(new JwtService())).toHaveProperty('extractTokenFromHeader');
+    expect(new AuthGuard(new JwtService())).toHaveProperty(
+      'extractTokenFromHeader',
+    );
   });
   it('should return token', () => {
     const token = 'sometoken';
@@ -71,7 +73,9 @@ describe('AuthGuard.extractTokenFromHeader', () => {
         authorization: `Bearer ${token}`,
       },
     };
-    expect((new AuthGuard(jwtService) as any).extractTokenFromHeader(request)).toEqual(token);
+    expect(
+      (new AuthGuard(jwtService) as any).extractTokenFromHeader(request),
+    ).toEqual(token);
   });
   it('should return undefined if not bearer', () => {
     const token = 'sometoken';
@@ -81,7 +85,9 @@ describe('AuthGuard.extractTokenFromHeader', () => {
         authorization: `asdf ${token}`,
       },
     };
-    expect((new AuthGuard(jwtService) as any).extractTokenFromHeader(request)).toBeUndefined();
+    expect(
+      (new AuthGuard(jwtService) as any).extractTokenFromHeader(request),
+    ).toBeUndefined();
   });
   it('should return undefined if no token', () => {
     const jwtService = new JwtService();
@@ -90,6 +96,8 @@ describe('AuthGuard.extractTokenFromHeader', () => {
         authorization: '',
       },
     };
-    expect((new AuthGuard(jwtService) as any).extractTokenFromHeader(request)).toBeUndefined();
+    expect(
+      (new AuthGuard(jwtService) as any).extractTokenFromHeader(request),
+    ).toBeUndefined();
   });
 });

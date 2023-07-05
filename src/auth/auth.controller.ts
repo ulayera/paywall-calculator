@@ -11,11 +11,15 @@ export class AuthController {
 
   @Post('login')
   async login(@Body() credentials: CredentialsDto): Promise<string> {
-    return this.authService.login(credentials.username, credentials.password).then((user) => JSON.stringify(user, null, 2));
+    return this.authService
+      .login(credentials.username, credentials.password)
+      .then((user) => JSON.stringify(user, null, 2));
   }
 
   @Post('register')
   async register(@Body() credentials: CredentialsDto): Promise<string> {
-    return this.authService.register(credentials.username, credentials.password).then((user) => JSON.stringify(user, null, 2));
+    return this.authService
+      .register(credentials.username, credentials.password)
+      .then((user) => JSON.stringify(user, null, 2));
   }
 }

@@ -11,15 +11,17 @@
     "start": "nest start",
     "start:dev": "nest start --watch",
     "start:debug": "nest start --debug --watch",
-    "start:prod": "node dist/main",
+    "start:prod": "export NODE_ENV=production; node dist/src/main",
     "lint": "eslint \"{src,apps,libs,test}/**/*.ts\" --fix",
     "test": "jest",
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
     "test:e2e": "jest --config ./test/jest-e2e.json",
-    "typeorm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
-    "lambda:offline": "sls offline start"
+    "orm": "ts-node -r tsconfig-paths/register ./node_modules/typeorm/cli.js",
+    "orm:migration:run": "npm run orm -- migration:run -d config/migration.config.ts",
+    "lambda:offline": "sls offline start",
+    "lambda:deploy": "sls deploy -s api"
   },
   "dependencies": {
     "@nestjs/axios": "^3.0.0",
@@ -35,8 +37,8 @@
     "mysql2": "^3.3.3",
     "reflect-metadata": "^0.1.13",
     "rxjs": "^7.2.0",
-    "typeorm": "0.3.7",
-    "source-map-support": "^0.5.20"
+    "source-map-support": "^0.5.20",
+    "typeorm": "0.3.7"
   },
   "devDependencies": {
     "@nestjs/cli": "^9.0.0",

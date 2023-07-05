@@ -9,7 +9,13 @@ import { UsersModule } from '../users/users.module';
 import { RecordsModule } from '../records/records.module';
 
 @Module({
-  imports: [HttpModule, PaywallModule, UsersModule, RecordsModule, TypeOrmModule.forFeature([User])],
+  imports: [
+    HttpModule,
+    PaywallModule,
+    UsersModule,
+    RecordsModule,
+    TypeOrmModule.forFeature([User]),
+  ],
   controllers: [ArithmeticOperationsController],
   providers: [ArithmeticOperationsService],
 })

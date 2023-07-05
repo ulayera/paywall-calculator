@@ -7,7 +7,8 @@ import { Repository } from 'typeorm';
 @Injectable()
 export class BalanceService {
   constructor(
-    @InjectRepository(Record) private recordRepository: Repository<Record>) {}
+    @InjectRepository(Record) private recordRepository: Repository<Record>,
+  ) {}
 
   async getBalance(user: User): Promise<number> {
     let currentBalance = parseInt(process.env.INITIAL_BALANCE) || 20;

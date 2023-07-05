@@ -13,7 +13,12 @@ export class RecordsController {
   @UseGuards(AuthGuard)
   @Get()
   async getRecords(@Request() req): Promise<Array<Record>> {
-    const records = await this.recordsService.getRecordsByUsername(req.user?.username);
-    return records.map((record) => ({...record, operation: record.operation?.type } as unknown as Record));
+    const records = await this.recordsService.getRecordsByUsername(
+      req.user?.username,
+    );
+    return records.map(
+      (record) =>
+        ({ ...record, operation: record.operation?.type } as unknown as Record),
+    );
   }
 }
